@@ -18,7 +18,7 @@ var app = express();
 //   });
 // });
 
-if (process.env.MESSAGE_STYLE == "uppercase") {
+if (process.env.MESSAGE_STYLE === "uppercase") {
   app.get("/json", (req, res) => {
     return res.json({ message: "HELLO JSON" });
   });
@@ -27,4 +27,5 @@ if (process.env.MESSAGE_STYLE == "uppercase") {
     return res.json({ message: "Hello json" });
   });
 }
+
 module.exports = app;
