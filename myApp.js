@@ -52,10 +52,21 @@ require("dotenv").config();
 //   });
 // });
 
-app.get("/:word/echo", (req, res) => {
-  const { word } = req.params;
+// app.get("/:word/echo", (req, res) => {
+//   const { word } = req.params;
+//   res.json({
+//     echo: word,
+//   });
+// });
+
+app.get("/name", function (req, res) {
+  var firstName = req.query.first;
+  var lastName = req.query.last;
+  // OR you can destructure and rename the keys
+  var { first: firstName, last: lastName } = req.query;
+  // Use template literals to form a formatted string
   res.json({
-    echo: word,
+    name: `${firstName} ${lastName}`,
   });
 });
 
