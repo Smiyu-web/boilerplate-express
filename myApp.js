@@ -36,9 +36,20 @@ require("dotenv").config();
 //     : res.json({ message: "Hello json" });
 // });
 
-app.use((req, res, next) => {
-  console.log(req.method + " " + req.path + " - " + req.ip);
+// app.use((req, res, next) => {
+//   console.log(req.method + " " + req.path + " - " + req.ip);
+//   next();
+// });
+
+const middleware = (req, res, next) => {
+  req.time = new Date().toString();
   next();
+};
+
+app.get("/now", middleware, (req, res) => {
+  res.send({
+    time: req.time,
+  });
 });
 
 module.exports = app;
