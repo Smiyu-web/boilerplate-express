@@ -20,14 +20,20 @@ require("dotenv").config();
 //   });
 // });
 
-if (process.env.MESSAGE_STYLE === "uppercase") {
-  app.get("/json", (req, res) => {
-    return res.json({ message: "HELLO JSON" });
-  });
-} else {
-  app.get("/json", (req, res) => {
-    return res.json({ message: "Hello json" });
-  });
-}
+// if (process.env.MESSAGE_STYLE === "uppercase") {
+//   app.get("/json", (req, res) => {
+//     return res.json({ message: "HELLO JSON" });
+//   });
+// } else {
+//   app.get("/json", (req, res) => {
+//     return res.json({ message: "Hello json" });
+//   });
+// }
+
+app.get("/json", (req, res) => {
+  process.env.MESSAGE_STYLE === "uppercase"
+    ? res.json({ message: "HELLO JSON" })
+    : res.json({ message: "Hello json" });
+});
 
 module.exports = app;
