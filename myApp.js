@@ -17,15 +17,16 @@ var app = express();
 //     message: "Hello json",
 //   });
 // });
-
-if (process.env.MESSAGE_STYLE === "uppercase") {
-  app.get("/json", (req, res) => {
-    return res.json({ message: "HELLO JSON" });
-  });
-} else {
-  app.get("/json", (req, res) => {
-    return res.json({ message: "Hello json" });
-  });
+var message = "Hello json";
+var msgObj = {};
+msgObj = { message: message };
+if (process.env.MESSAGE_STYLE == "uppercase") {
+  message = message.toUpperCase();
+  msgObj.message = message;
 }
+
+app.get("/json", function (req, res) {
+  return res.json(msgObj);
+});
 
 module.exports = app;
