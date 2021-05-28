@@ -41,18 +41,22 @@ require("dotenv").config();
 //   next();
 // });
 
-app.get(
-  "/now",
-  function (req, res, next) {
-    next();
-  },
-  function (req, res) {
-    var time = new Date().toString();
+// const middleware = (req, res, next) => {
+//   req.time = new Date().toString();
+//   next();
+// };
 
-    console.log("time" + time);
+// app.get("/now", middleware, (req, res) => {
+//   res.send({
+//     time: req.time,
+//   });
+// });
 
-    res.json({ time: time });
-  }
-);
+app.get("/:word/echo", (req, res) => {
+  const { word } = req.params;
+  res.json({
+    echo: word,
+  });
+});
 
 module.exports = app;
