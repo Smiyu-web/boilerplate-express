@@ -41,15 +41,18 @@ require("dotenv").config();
 //   next();
 // });
 
-const middleware = (req, res, next) => {
-  req.time = new Date().toString();
-  next();
-};
+app.get(
+  "/now",
+  function (req, res, next) {
+    next();
+  },
+  function (req, res) {
+    var time = new Date().toString();
 
-app.get("/now", middleware, (req, res) => {
-  res.send({
-    time: req.time,
-  });
-});
+    console.log("time" + time);
+
+    res.json({ time: time });
+  }
+);
 
 module.exports = app;
